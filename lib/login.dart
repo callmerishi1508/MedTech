@@ -10,7 +10,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
-  @override
+  @override //gfdf
   State<LoginPage> createState() => _LoginPageState();
 }
 
@@ -82,3 +82,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+// gsgjhsgak
