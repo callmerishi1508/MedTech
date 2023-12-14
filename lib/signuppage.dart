@@ -19,7 +19,7 @@ class _SignUPPageState extends State<SignUPPage> {
   TextEditingController passwordController = TextEditingController();
 
   signUp(String email, String password) async {
-    if (email == "" && password == "") {
+    if (email == "" || password == "") {
       return UiHelper.CustomAlertBox(context, "Enter Required Fields");
     } else {
       UserCredential? usercredential;

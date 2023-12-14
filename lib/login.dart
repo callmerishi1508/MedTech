@@ -20,21 +20,23 @@ class _LoginPageState extends State<LoginPage> {
 
   login(String email, String password) async {
     //verified
-    if (email == "" && password == "") {
+    if (email == "" || password == "") {
       return UiHelper.CustomAlertBox(context, "Enter Required Fields");
-    } else {
-      UserCredential? userCredential;
     }
     try {
       UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-      {
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      // Check if the userCredential is not null
+      if (userCredential.user != null) {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: ((context) => MyHomePage(title: "Login"))));
+          context,
+          MaterialPageRoute(
+              builder: (context) => MyHomePage(title: "HomePage")),
+        );
+      } else {
+        return UiHelper.CustomAlertBox(context, "Login failed");
       }
-      ;
     } on FirebaseAuthException catch (ex) {
       return UiHelper.CustomAlertBox(context, ex.code.toString());
     }
