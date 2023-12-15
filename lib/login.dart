@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_project/forgotpassword.dart';
 import 'package:firebase_project/main.dart';
 import 'package:firebase_project/signuppage.dart';
 import 'package:firebase_project/uihelper.dart';
@@ -78,7 +79,19 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ))
             ],
-          )
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ForgotPassword()));
+              },
+              child: Text(
+                "Forgot Password",
+                style: TextStyle(fontSize: 20),
+              ))
         ],
       ),
     );
