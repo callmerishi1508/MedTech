@@ -1,3 +1,5 @@
+// ignore_for_file: implementation_imports, unused_import, unnecessary_import, prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/uihelper.dart';
 import 'package:flutter/material.dart';

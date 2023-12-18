@@ -1,3 +1,5 @@
+// ignore_for_file: implementation_imports, unnecessary_import, unused_import, unused_local_variable, prefer_const_constructors, body_might_complete_normally_nullable
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_project/main.dart';

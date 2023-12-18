@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously, unnecessary_import, implementation_imports, unused_import
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/forgotpassword.dart';
 import 'package:firebase_project/main.dart';
