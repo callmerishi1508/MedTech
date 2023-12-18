@@ -20,12 +20,14 @@ class _SignUPPageState extends State<SignUPPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  signUp(String email, String password) async {
+  /*signUp(String email, String password) async {
     if (email == "" || password == "") {
       return UiHelper.CustomAlertBox(context, "Enter Required Fields");
     } else {
       UserCredential? usercredential;
       try {
+        BuildContext localContext = context;
+
         usercredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((value) {
@@ -36,6 +38,39 @@ class _SignUPPageState extends State<SignUPPage> {
         });
       } on FirebaseAuthException catch (ex) {
         return UiHelper.CustomAlertBox(context, ex.code.toString());
+      }
+    }
+  }*/
+
+  signUp(String email, String password) async {
+    if (email == "" || password == "") {
+      return UiHelper.CustomAlertBox(context, "Enter Required Fields");
+    } else {
+      BuildContext localContext = context;
+
+      UserCredential? userCredential;
+      try {
+        userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+
+        // Use Future.microtask to capture the BuildContext outside the asynchronous gap
+        Future.microtask(() {
+          if (userCredential?.user != null) {
+            Navigator.push(
+              localContext,
+              MaterialPageRoute(
+                builder: (context) => MyHomePage(title: "HomePage"),
+              ),
+            );
+          } else {
+            UiHelper.CustomAlertBox(localContext, "Sign Up failed");
+          }
+        });
+      } on FirebaseAuthException catch (ex) {
+        // Use Future.microtask to capture the BuildContext outside the asynchronous gap
+        Future.microtask(() {
+          UiHelper.CustomAlertBox(localContext, ex.code.toString());
+        });
       }
     }
   }

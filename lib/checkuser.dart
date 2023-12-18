@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_import, implementation_imports, unused_import, file_names
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/login.dart';
 import 'package:firebase_project/main.dart';

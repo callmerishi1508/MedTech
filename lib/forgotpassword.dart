@@ -20,7 +20,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       return UiHelper.CustomAlertBox(
           context, "Enter an Eamil To Reset Password");
     } else {
-      FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     }
   }
 
