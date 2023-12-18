@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_project/checkUser.dart';
+// import 'package:firbase_project/login.dart';
 import 'package:firebase_project/login.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      //home: CheckUser(),
+      // home: CheckUser(),
       home: LoginPage(),
     );
   }
@@ -71,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   logOut() async {
-    FirebaseAuth.instance.signOut().then((value) {
+    await FirebaseAuth.instance.signOut().then((value) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => LoginPage()));
     });
