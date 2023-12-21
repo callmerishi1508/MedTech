@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/login.dart';
 import 'package:firebase_project/screens/donate_recieve_screen.dart';
@@ -18,7 +20,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> widgetList = [
     Text('Home', style: TextStyle(fontSize: 40)),
-    Text('Medical Shops', style: TextStyle(fontSize: 40)),
+    Text('Medicine', style: TextStyle(fontSize: 40)),
+    Text('Hospital', style: TextStyle(fontSize: 40)),
     DonateRecieveScreen(),
   ];
 
@@ -68,8 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: Color.fromARGB(255, 219, 186, 84)),
             BottomNavigationBarItem(
                 icon: Icon(Icons.medication),
-                label: 'Medi',
+                label: 'Medicine',
                 backgroundColor: Colors.blue),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.horizontal_split_sharp),
+                label: 'Hospital',
+                backgroundColor: Colors.green),
             BottomNavigationBarItem(
                 icon: Icon(Icons.heart_broken_rounded),
                 label: 'Donate',
