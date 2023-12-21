@@ -15,7 +15,7 @@ class _AddPostPageState extends State<AddPostPage> {
   TextEditingController _postTextController = TextEditingController();
 
   // Pick an image from the camera or gallery
-  Future<bool> uploadImageAndAddPost() async {
+  Future<void> _pickImage(ImageSource source) async {
     final pickedImage = await ImagePicker().pickImage(source: source);
 
     if (pickedImage == null) return;

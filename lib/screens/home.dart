@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import, duplicate_import, unused_field, unused_local_variable
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import, duplicate_import, unused_field
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/login.dart';
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           // Navigate to AddPostPage and wait for a result
-          dynamic result = await Navigator.push(
+          bool postAdded = await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => AddPostPage(),
@@ -76,13 +76,14 @@ class _MyHomePageState extends State<MyHomePage> {
           );
 
           // If a post was added, refresh the UI
-          if (result != null && result is bool) {
-            // Handle the result, for example, refresh the posts
-            if (result) {
-              // If result is true, refresh posts
-              // Call a function to refresh your posts
-              refreshPosts();
-            }
+          if (postAdded) {
+            // Reload posts from your data source (e.g., Firebase)
+            // For simplicity, let's assume posts is a List<Post> obtained from your data source
+            // Update the posts list as needed
+            setState(() {
+              // Example: posts = await fetchPostsFromFirebase();
+              // Make sure to update the posts list with the new data
+            });
           }
         },
         tooltip: 'Add Post',
