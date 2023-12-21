@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/forgotpassword.dart';
 import 'package:firebase_project/main.dart';
+import 'package:firebase_project/screens/home.dart';
 import 'package:firebase_project/signuppage.dart';
 import 'package:firebase_project/uihelper.dart';
 import 'package:flutter/material.dart';
