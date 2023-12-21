@@ -12,12 +12,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // ignore: unused_field
   int _counter = 0;
   int myIndex = 0;
 
   List<Widget> widgetList = [
-    Text('Homme', style: TextStyle(fontSize: 40)),
-    Text('Medi', style: TextStyle(fontSize: 40)),
+    Text('Home', style: TextStyle(fontSize: 40)),
+    Text('Medical Shops', style: TextStyle(fontSize: 40)),
     DonateRecieveScreen(),
   ];
 
