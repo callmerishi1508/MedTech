@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
 
   login(String email, String password) async {
     //verified
-    if (email == "" || password == "") {
+    if (email == "" && password == "") {
       return UiHelper.CustomAlertBox(context, "Enter Required Fields");
     }
     try {
