@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/login.dart';
 import 'package:firebase_project/screens/donate_recieve_screen.dart';
+import 'package:firebase_project/setting.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -38,12 +39,25 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+//Settings tab
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(widget.title),
-      // ),
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsPage(title: "Settings"),
+                  ),
+                );
+              },
+              icon: Icon(Icons.settings))
+        ],
+      ),
       body: IndexedStack(
         children: widgetList,
         index: myIndex,
@@ -67,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
           items: [
             BottomNavigationBarItem(
                 icon: const Icon(Icons.home_mini_rounded),
-                label: 'home',
+                label: 'Home',
                 backgroundColor: Color.fromARGB(255, 219, 186, 84)),
             BottomNavigationBarItem(
                 icon: Icon(Icons.medication),

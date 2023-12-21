@@ -36,7 +36,9 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => MyHomePage(title: "HomePage")),
+              builder: (context) => MyHomePage(
+                    title: 'Home Page',
+                  )),
         );
       } else {
         return UiHelper.CustomAlertBox(context, "Login failed");
