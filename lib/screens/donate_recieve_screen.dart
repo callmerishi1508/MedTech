@@ -14,7 +14,10 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Donate-Recieve'),
+        title: Text(
+          'Donate-Recieve',
+          style: TextStyle(fontSize: 40),
+        ),
       ),
       body: Center(
         child: Column(
