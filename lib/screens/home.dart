@@ -9,7 +9,7 @@ import 'package:firebase_project/post.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
   final String title;
 
   @override
@@ -35,34 +35,27 @@ class _MyHomePageState extends State<MyHomePage> {
     DonateRecieveScreen(),
   ];
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  // Settings tab
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        //title: Text(widget.title),
-        title: null,
-        automaticallyImplyLeading: true,
-        toolbarHeight: 10.0,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SettingsTab(title: "Settings"),
-                ),
-              );
-            },
-            icon: Icon(Icons.settings),
-          )
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.0),
+        child: AppBar(
+          // title: Text(widget.title),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsTab(title: "Settings"),
+                  ),
+                );
+              },
+              icon: Icon(Icons.settings),
+            )
+          ],
+        ),
       ),
       body: IndexedStack(
         children: widgetList,

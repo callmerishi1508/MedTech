@@ -1,23 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hospital Authority Login',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HospitalAuthoritiesPage(),
-    );
-  }
-}
-
 class HospitalAuthoritiesPage extends StatefulWidget {
+  const HospitalAuthoritiesPage({super.key});
+
   @override
   _HospitalAuthoritiesPageState createState() =>
       _HospitalAuthoritiesPageState();
@@ -31,7 +16,7 @@ class _HospitalAuthoritiesPageState extends State<HospitalAuthoritiesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hospital Authority Login'),
+        title: const Text('Hospital Authority Login'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -40,7 +25,7 @@ class _HospitalAuthoritiesPageState extends State<HospitalAuthoritiesPage> {
           children: [
             TextField(
               controller: codeController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Code',
               ),
             ),
@@ -48,7 +33,7 @@ class _HospitalAuthoritiesPageState extends State<HospitalAuthoritiesPage> {
             TextField(
               controller: passwordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Password',
               ),
             ),
@@ -64,7 +49,7 @@ class _HospitalAuthoritiesPageState extends State<HospitalAuthoritiesPage> {
                 print('Code: $code');
                 print('Password: $password');
               },
-              child: Text('Login'),
+              child: const Text('Login'),
             ),
           ],
         ),
