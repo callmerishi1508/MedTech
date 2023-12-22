@@ -7,9 +7,9 @@ class PublicPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Public Page'),
+        title: const Text('Public Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('This is the Public Page'),
       ),
     );

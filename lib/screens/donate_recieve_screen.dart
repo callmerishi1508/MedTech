@@ -14,7 +14,7 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Donate-Recieve',
           style: TextStyle(fontSize: 40),
         ),
@@ -24,7 +24,12 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () => PublicPage(),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PublicPage()),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 alignment: Alignment.center,
                 backgroundColor: Color.fromRGBO(13, 2, 96, 1),
@@ -36,7 +41,7 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
                 width: 300,
                 alignment: Alignment.center,
                 padding: EdgeInsets.symmetric(vertical: 50),
-                child: Text(
+                child: const Text(
                   'Public',
                   style: TextStyle(
                     color: Colors.white, // Text color
@@ -45,9 +50,15 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             ElevatedButton(
-              onPressed: () => HospitalAuthoritiesPage(),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HospitalAuthoritiesPage()),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 alignment: Alignment.center,
                 backgroundColor: Color.fromRGBO(13, 2, 96, 1),
@@ -59,7 +70,7 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
                 width: 300,
                 alignment: Alignment.center,
                 padding: EdgeInsets.symmetric(vertical: 50),
-                child: Text(
+                child: const Text(
                   'Hospital Authorities',
                   style: TextStyle(
                     color: Colors.white, // Text color
