@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0),
+        preferredSize: Size.fromHeight(40.0),
         child: AppBar(
           // title: Text(widget.title),
           actions: [
@@ -61,30 +61,38 @@ class _MyHomePageState extends State<MyHomePage> {
         children: widgetList,
         index: myIndex,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          // Navigate to AddPostPage and wait for a result
-          bool postAdded = await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddPostPage(),
-            ),
-          );
+      floatingActionButton: myIndex == 0
+          ? Positioned(
+              bottom: 30,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: FloatingActionButton(
+                  onPressed: () async {
+                    // Navigate to AddPostPage and wait for a result
+                    bool postAdded = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddPostPage(),
+                      ),
+                    );
 
-          // If a post was added, refresh the UI
-          if (postAdded) {
-            // Reload posts from your data source (e.g., Firebase)
-            // For simplicity, let's assume posts is a List<Post> obtained from your data source
-            // Update the posts list as needed
-            setState(() {
-              // Example: posts = await fetchPostsFromFirebase();
-              // Make sure to update the posts list with the new data
-            });
-          }
-        },
-        tooltip: 'Add Post',
-        child: const Icon(Icons.add),
-      ),
+                    // If a post was added, refresh the UI
+                    if (postAdded) {
+                      // Reload posts from your data source (e.g., Firebase)
+                      // For simplicity, let's assume posts is a List<Post> obtained from your data source
+                      // Update the posts list as needed
+                      setState(() {
+                        // Example: posts = await fetchPostsFromFirebase();
+                        // Make sure to update the posts list with the new data
+                      });
+                    }
+                  },
+                  tooltip: 'Add Post',
+                  child: const Icon(Icons.add),
+                ),
+              ),
+            )
+          : null,
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
         backgroundColor: Color.fromARGB(255, 20, 5, 138),

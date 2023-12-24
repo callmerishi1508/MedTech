@@ -141,7 +141,9 @@ class _AddPostPageState extends State<AddPostPage> {
               ),
               maxLines: 4,
             ),
-            SizedBox(height: 16),
+            SizedBox(
+              height: 16,
+            ),
             ElevatedButton(
               onPressed: _uploadImageAndAddPost,
               child: Text('Add Post'),

@@ -56,7 +56,7 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => HospitalAuthoritiesPage()),
+                      builder: (context) => HospitalAuthoritiesLoginPage()),
                 );
               },
               style: ElevatedButton.styleFrom(
