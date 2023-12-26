@@ -28,7 +28,7 @@ class UiHelper {
               voidCallback();
             },
             style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
+                backgroundColor: Colors.blue,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25))),
             child: Text(text,

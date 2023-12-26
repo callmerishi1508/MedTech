@@ -1,3 +1,4 @@
+import 'package:firebase_project/hospital_authorities_page.dart';
 import 'package:firebase_project/screens/hospital_authorities.dart';
 import 'package:firebase_project/screens/public_page.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
                 alignment: Alignment.center,
                 backgroundColor: Color.fromRGBO(13, 2, 96, 1),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(65),
                 ),
               ),
               child: Container(
@@ -56,14 +57,14 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => HospitalAuthoritiesLoginPage()),
+                      builder: (context) => HospitalAuthoritiesPage()),
                 );
               },
               style: ElevatedButton.styleFrom(
                 alignment: Alignment.center,
                 backgroundColor: Color.fromRGBO(13, 2, 96, 1),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(65),
                 ),
               ),
               child: Container(
