@@ -1,4 +1,3 @@
-// Import necessary packages
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -76,6 +75,9 @@ class _AddPostPageState extends State<AddPostPage> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Post added successfully!'),
       ));
+
+      // Notify the calling widget that a post was added
+      Navigator.pop(context, true);
     } catch (e) {
       print('Error uploading image: $e');
       // Handle the error (display a message or take appropriate action)

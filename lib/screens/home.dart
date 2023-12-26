@@ -5,11 +5,10 @@ import 'package:firebase_project/login.dart';
 import 'package:firebase_project/post.dart';
 import 'package:firebase_project/screens/donate_recieve_screen.dart';
 import 'package:firebase_project/settings.dart';
-import 'package:firebase_project/post.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -19,14 +18,15 @@ class MyHomePage extends StatefulWidget {
 class Post {
   final String title;
   final String content;
+  final String imageUrl;
 
-  Post({required this.title, required this.content});
+  Post({required this.title, required this.content, required this.imageUrl});
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int myIndex = 0;
-  List<AddPostPage> posts = []; // List to store posts
+  List<Post> posts = []; // List to store posts
 
   List<Widget> widgetList = [
     Text('Home', style: TextStyle(fontSize: 40)),
@@ -41,7 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0),
         child: AppBar(
-          // title: Text(widget.title),
           actions: [
             IconButton(
               onPressed: () {
@@ -57,10 +56,30 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: IndexedStack(
-        children: widgetList,
-        index: myIndex,
-      ),
+      body: myIndex == 0
+          ? IndexedStack(
+              children: widgetList,
+              index: myIndex,
+            )
+          : ListView.builder(
+              itemCount: posts.length,
+              itemBuilder: (context, index) {
+                Post post = posts[index];
+                return ListTile(
+                  title: Text(post.title),
+                  subtitle: Text(post.content),
+                  leading: post.imageUrl.isNotEmpty
+                      ? Image.network(
+                          post.imageUrl,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        )
+                      : null,
+                  // Add additional UI elements for displaying posts
+                );
+              },
+            ),
       floatingActionButton: myIndex == 0
           ? Positioned(
               bottom: 30,
@@ -69,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: FloatingActionButton(
                   onPressed: () async {
                     // Navigate to AddPostPage and wait for a result
-                    bool postAdded = await Navigator.push(
+                    bool? postAdded = await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => AddPostPage(),
@@ -77,13 +96,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
 
                     // If a post was added, refresh the UI
-                    if (postAdded) {
-                      // Reload posts from your data source (e.g., Firebase)
-                      // For simplicity, let's assume posts is a List<Post> obtained from your data source
-                      // Update the posts list as needed
+                    if (postAdded != null && postAdded) {
+                      // Reload posts from your data source
                       setState(() {
-                        // Example: posts = await fetchPostsFromFirebase();
-                        // Make sure to update the posts list with the new data
+                        posts.add(Post(
+                            title: 'New Post',
+                            content: 'Content of the new post',
+                            imageUrl:
+                                'https://example.com/placeholder_image.jpg'));
                       });
                     }
                   },
@@ -92,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             )
-          : null,
+          : Container(),
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
         backgroundColor: Color.fromARGB(255, 20, 5, 138),
