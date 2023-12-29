@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import, duplicate_import, unused_field
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/login.dart';
 import 'package:firebase_project/post.dart';
@@ -27,6 +28,34 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int myIndex = 0;
   List<Post> posts = []; // List to store posts
+
+  // Firestore collection reference
+  final CollectionReference postsCollection =
+      FirebaseFirestore.instance.collection('posts');
+
+  // Function to fetch posts from Firestore
+  Future<void> fetchPosts() async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> snapshot =
+          await postsCollection.get() as QuerySnapshot<Map<String, dynamic>>;
+      ;
+      List<Post> newPosts = snapshot.docs.map((doc) {
+        Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+        ;
+        return Post(
+          title: data['title'] ?? '',
+          content: data['content'] ?? '',
+          imageUrl: data['imageUrl'] ?? '',
+        );
+      }).toList();
+
+      setState(() {
+        posts = newPosts;
+      });
+    } catch (e) {
+      print('Error fetching posts: $e');
+    }
+  }
 
   List<Widget> widgetList = [
     Text('Home', style: TextStyle(fontSize: 40)),
@@ -87,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 alignment: Alignment.bottomCenter,
                 child: FloatingActionButton(
                   onPressed: () async {
+                    await fetchPosts();
                     // Navigate to AddPostPage and wait for a result
                     bool? postAdded = await Navigator.push(
                       context,
@@ -98,13 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     // If a post was added, refresh the UI
                     if (postAdded != null && postAdded) {
                       // Reload posts from your data source
-                      setState(() {
-                        posts.add(Post(
-                            title: 'New Post',
-                            content: 'Content of the new post',
-                            imageUrl:
-                                'https://example.com/placeholder_image.jpg'));
-                      });
+                      await fetchPosts();
                     }
                   },
                   tooltip: 'Add Post',
