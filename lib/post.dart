@@ -1,5 +1,5 @@
-// Import necessary packages
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,15 @@ class AddPostPage extends StatefulWidget {
 class _AddPostPageState extends State<AddPostPage> {
   File? _pickedImage;
   final TextEditingController _postTextController = TextEditingController();
+
+  late CollectionReference postsCollection;
+
+  // Initialize Firestore collection reference in initState
+  @override
+  void initState() {
+    super.initState();
+    postsCollection = FirebaseFirestore.instance.collection('posts');
+  }
 
   // Pick an image from the camera or gallery
   Future<void> _pickImage(ImageSource source) async {
@@ -65,6 +74,18 @@ class _AddPostPageState extends State<AddPostPage> {
 
       // Upload the image
       await FirebaseStorage.instance.ref(imagePath).putFile(_pickedImage!);
+
+      // Implement logic to save the post with image URL and text
+      // You can use _pickedImage and _postTextController.text
+      // Add your own implementation here
+      await postsCollection.add({
+        'title': 'New Post',
+        'content': _postTextController.text,
+        'imageUrl':
+            'gs://practice-first-90f3b.appspot.com', // Update with your Storage URL
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      // Clear the image and text fields after posting
       _clearImage();
       _postTextController.clear();
 
@@ -72,6 +93,9 @@ class _AddPostPageState extends State<AddPostPage> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Post added successfully!'),
       ));
+
+      // Notify the calling widget that a post was added
+      Navigator.pop(context, true);
     } catch (e) {
       print('Error uploading image: $e');
     }

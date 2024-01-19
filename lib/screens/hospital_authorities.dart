@@ -17,7 +17,8 @@ class _HospitalAuthoritiesLoginPageState
   TextEditingController passwordController = TextEditingController();
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  List<String> allowedEmails = ["test@example.com"];
+  // Allow only users with email addresses ending in "@example.com"
+  String allowedDomain = "@example.com";
 
   Future<void> login(String email, String password) async {
     // verified
@@ -34,8 +35,8 @@ class _HospitalAuthoritiesLoginPageState
       // Check if the userCredential is not null
       if (userCredential.user != null) {
         String userEmail = userCredential.user!.email ?? "";
-        // Check if the logged-in user's email is in the allowedEmails list
-        if (allowedEmails.contains(userEmail)) {
+        // Check if the logged-in user's email ends with the allowedDomain
+        if (userEmail.endsWith(allowedDomain)) {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => HospitalAuthoritiesPage()),

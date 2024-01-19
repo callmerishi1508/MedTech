@@ -1,4 +1,3 @@
-import 'package:firebase_project/hospital_authorities_page.dart';
 import 'package:firebase_project/screens/hospital_authorities.dart';
 import 'package:firebase_project/screens/public_page.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +56,7 @@ class _DonateRecieveScreenState extends State<DonateRecieveScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => HospitalAuthoritiesPage()),
+                      builder: (context) => HospitalAuthoritiesLoginPage()),
                 );
               },
               style: ElevatedButton.styleFrom(
