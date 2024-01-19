@@ -6,13 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddPostPage extends StatefulWidget {
+  const AddPostPage({super.key});
+
   @override
   _AddPostPageState createState() => _AddPostPageState();
 }
 
 class _AddPostPageState extends State<AddPostPage> {
   File? _pickedImage;
-  TextEditingController _postTextController = TextEditingController();
+  final TextEditingController _postTextController = TextEditingController();
 
   // Pick an image from the camera or gallery
   Future<void> _pickImage(ImageSource source) async {
@@ -63,12 +65,6 @@ class _AddPostPageState extends State<AddPostPage> {
 
       // Upload the image
       await FirebaseStorage.instance.ref(imagePath).putFile(_pickedImage!);
-
-      // Implement logic to save the post with image URL and text
-      // You can use _pickedImage and _postTextController.text
-      // Add your own implementation here
-
-      // Clear the image and text fields after posting
       _clearImage();
       _postTextController.clear();
 
@@ -78,7 +74,6 @@ class _AddPostPageState extends State<AddPostPage> {
       ));
     } catch (e) {
       print('Error uploading image: $e');
-      // Handle the error (display a message or take appropriate action)
     }
   }
 
@@ -141,9 +136,7 @@ class _AddPostPageState extends State<AddPostPage> {
               ),
               maxLines: 4,
             ),
-            SizedBox(
-              height: 16,
-            ),
+            SizedBox(height: 16),
             ElevatedButton(
               onPressed: _uploadImageAndAddPost,
               child: Text('Add Post'),

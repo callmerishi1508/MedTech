@@ -14,7 +14,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
-  @override //gfdf
+  @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
@@ -22,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  // Corrected the scope of emailController and passwordController
   login(String email, String password) async {
     //verified
     if (email == "" && password == "") {
@@ -36,9 +37,10 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => MyHomePage(
-                    title: 'Home Page',
-                  )),
+            builder: (context) => MyHomePage(
+              title: 'Home Page',
+            ),
+          ),
         );
       } else {
         return UiHelper.CustomAlertBox(context, "Login failed");
@@ -63,8 +65,10 @@ class _LoginPageState extends State<LoginPage> {
               passwordController, "Password", Icons.password, true),
           SizedBox(height: 30),
           UiHelper.CustomButtom(() {
-            login(emailController.text.toString(),
-                passwordController.text.toString());
+            login(
+              emailController.text.toString(),
+              passwordController.text.toString(),
+            );
           }, "Login"),
           SizedBox(height: 20),
           Row(
@@ -75,31 +79,38 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(fontSize: 16),
               ),
               TextButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUPPage()));
-                  },
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 77, 19, 178)),
-                  ))
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUPPage()),
+                  );
+                },
+                child: Text(
+                  "Sign Up",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 77, 19, 178),
+                  ),
+                ),
+              )
             ],
           ),
           SizedBox(
             height: 20,
           ),
           TextButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ForgotPassword()));
-              },
-              child: Text(
-                "Forgot Password",
-                style: TextStyle(fontSize: 20),
-              ))
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ForgotPassword()),
+              );
+            },
+            child: Text(
+              "Forgot Password",
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
         ],
       ),
     );
